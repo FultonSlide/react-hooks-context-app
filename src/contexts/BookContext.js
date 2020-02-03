@@ -1,24 +1,13 @@
-import React, { createContext, useState } from 'react'
-import uuid from 'uuid/v1'; //have to npm install this
+import React, { createContext, useState, useReducer } from 'react'
+import BookReducer from '../reducers/BookReducer';
+
 export const BookContext = createContext();
 
 const BookContextProvider = (props) => {
-    const [ books, setBooks ] = useState([
-        { title: 'name of the wind', author: 'patrick rothfuss', id: uuid() },
-        { title: 'the final empire', author: 'brandon sanderson', id: uuid() }
-    ]); 
-
-    const addBook = (title, author) => {
-        setBooks([...books, {title, author}]);
-        console.log('added book');
-    };
-
-    const removeBook = (id) => {
-        setBooks(books.filter((book) => book.id !== id));
-    };
+    const [ books, dispatch ] = useReducer(BookReducer, []);
 
     return(
-        <BookContext.Provider value={{ books, addBook, removeBook }}>
+        <BookContext.Provider value={{ books, dispatch }}>
             {props.children}
         </BookContext.Provider>
     );
