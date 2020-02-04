@@ -8,7 +8,10 @@ const BookForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addBook(title, author);
+        dispatch({type: 'ADD_BOOK', book: {
+            title,
+            author
+        }});
         setTitle('');
         setAuthor('');
     }

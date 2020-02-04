@@ -1,5 +1,5 @@
 import React, { createContext, useState, useReducer } from 'react'
-import BookReducer from '../reducers/BookReducer';
+import { BookReducer } from '../reducers/BookReducer';
 
 export const BookContext = createContext();
 
